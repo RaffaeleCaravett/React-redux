@@ -5,7 +5,9 @@ function App() {
 
   return (
     <>
-   
+   <div className='text-center'>
+    <h1>Ciao</h1>
+   </div>
     </>
   )
 }
