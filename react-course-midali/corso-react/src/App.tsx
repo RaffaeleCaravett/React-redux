@@ -4,6 +4,9 @@ import './App.css'
 
 import Nav from './nav.tsx'
 import Fot from './foot.tsx'
+import Home from './Home.tsx';
+import Blog from './Blog.tsx';
+import Login from './Login.tsx';
 function App() {
 
   return (
@@ -13,11 +16,11 @@ function App() {
     <div className="App">
       <div className="Content">
         <Routes>
-          <Route  path="/Home">
+          <Route  path="/Home" element={<Home />}>
           </Route>
-          <Route path="/Blogs">
+          <Route path="/Blogs" element={<Blog />}>
           </Route>
-          <Route path="/Login">
+          <Route path="/Login" element={<Login />}>
           </Route>
           <Route path="*">
           </Route>
