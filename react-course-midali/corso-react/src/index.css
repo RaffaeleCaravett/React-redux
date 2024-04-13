@@ -10,5 +10,14 @@
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-style: normal;
+font-size: 40px;
+line-height: 1.2;
+
+  }
+  .background{
+    background: url('./assets/nature.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 86vh;
   }
 }
