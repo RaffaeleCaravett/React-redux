@@ -1,6 +1,8 @@
 package com.example.blogs.user;
 
+import com.example.blogs.blog.Blog;
 import com.example.blogs.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +26,9 @@ private String nome;
 private String cognome;
 private String email;
 private String password;
+@OneToMany(mappedBy = "user")
+@JsonIgnore
+private List<Blog> blogs;
 
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.blogs.blog;
 
+import com.example.blogs.enums.Categoria;
+import com.example.blogs.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,4 +17,8 @@ public class Blog {
     private int tempoLettura;
     @Lob
     private String testo;
+    private Categoria categoria;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
