@@ -13,6 +13,8 @@ public record BlogDTO(
         @NotEmpty(message = "Title is empty")
         String titolo,
         @NotNull(message = "Reading time is empty")
-        int tempoLettura
+        int tempoLettura,
+        @NotNull(message = "User id is empty")
+        long user_id
 ) {
 }
