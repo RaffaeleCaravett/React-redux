@@ -1,5 +1,7 @@
 package com.example.blogs.user;
 
+import com.example.blogs.blog.Blog;
+import com.example.blogs.blog.BlogService;
 import com.example.blogs.exceptions.BadRequestException;
 import com.example.blogs.exceptions.NotFoundException;
 import com.example.blogs.payloads.entities.UserRegistrationDTO;
@@ -13,9 +15,14 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    BlogService blogService;
 
     public boolean deleteById(long id){
         if(userRepository.findById(id).isPresent()){
+
+            blogService.deleteAllByUserId(id);
+
 userRepository.deleteById(id);
 return true;
         }else{

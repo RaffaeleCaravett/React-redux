@@ -70,4 +70,14 @@ public Blog updateById(long id,BlogDTO blogDTO){
     return blogRepository.save(blog);
 
 }
+
+public boolean deleteAllByUserId(long id){
+    try {
+        blogRepository.deleteAllByUser_Id(id);
+        return true;
+    }
+    catch (Exception e){
+        return false;
+    }
+}
 }
