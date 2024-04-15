@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
@@ -31,5 +33,20 @@ public class BlogController {
         return blogService.getById(id);
     }
 
-    
+    @GetMapping("/user/{id}")
+    public List<Blog> getByUserId(@PathVariable long id){
+        return blogService.findByUserId(id);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("HasAuthority('Admin')")
+    public Blog putById(@PathVariable long id, @RequestBody BlogDTO blogDTO){
+        return blogService.updateById(id,blogDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("HasAuthority('Admin')")
+public boolean deleteById(@PathVariable long id){
+        return blogService.deleteById(id);
+    }
 }
