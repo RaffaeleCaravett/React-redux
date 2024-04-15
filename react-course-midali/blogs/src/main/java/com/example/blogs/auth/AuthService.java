@@ -36,8 +36,13 @@ public class AuthService {
     }
 
     public Tokens generateTokens(User user){
+return jwtTools.createToken(user);
+    }
 
-
-        return new Tokens("asgdf","fdasfdsafds");
+    public User verifyAccessToken(String accessToken){
+        return jwtTools.verifyAccessToken(accessToken);
+    }
+    public Tokens verifyRefreshToken(String refreshToken){
+        return jwtTools.verifyRefreshToken(refreshToken);
     }
 }
