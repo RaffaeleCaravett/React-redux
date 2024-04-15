@@ -1,7 +1,9 @@
 package com.example.blogs.auth;
 
 import com.example.blogs.enums.Role;
+import com.example.blogs.payloads.entities.Tokens;
 import com.example.blogs.payloads.entities.UserRegistrationDTO;
+import com.example.blogs.security.JWTTools;
 import com.example.blogs.user.User;
 import com.example.blogs.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class AuthService {
     @Autowired
     private PasswordEncoder bcrypt;
 
+    @Autowired
+    private JWTTools jwtTools;
 
     public User save(UserRegistrationDTO userRegistrationDTO){
         User user = new User();
@@ -29,5 +33,11 @@ public class AuthService {
         }
         user.setPassword(bcrypt.encode(userRegistrationDTO.password()));
         return userRepository.save(user);
+    }
+
+    public Tokens generateTokens(User user){
+
+
+        return new Tokens("asgdf","fdasfdsafds");
     }
 }
