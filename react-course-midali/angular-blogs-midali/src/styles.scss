@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 html, body { height: 100%; }
 body { margin: 0;
@@ -9,4 +10,7 @@ body { margin: 0;
   font-variation-settings:
     "wdth" 100;
 
+  }
+  mat-icon{
+    font-family: 'Material Icons' !important;
   }

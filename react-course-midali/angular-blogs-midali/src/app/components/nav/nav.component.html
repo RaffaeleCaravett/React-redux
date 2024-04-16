@@ -2,10 +2,20 @@
   <div class="container">
     <div class="row">
 <div class="col-md-6">
-  <h2 routerLink="'/'">Home</h2>
+  <h2 routerLink="/">Home</h2>
 </div>
 <div class="col-md-6">
-  <h2 *ngIf="!authenticated" routerLink="'/login'">Login/Signup</h2>
+  <button *ngIf="!authenticated" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/login' ,'login']">
+      <span>Login</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/login' ,'signup']">
+      <span>Signup</span>
+    </button>
+  </mat-menu>
   <h2 *ngIf="authenticated" (click)="logout()">Logout</h2>
 </div>
     </div>
