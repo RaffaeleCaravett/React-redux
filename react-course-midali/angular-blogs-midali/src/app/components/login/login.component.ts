@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 export class LoginComponent implements OnInit{
 
   param:string=''
+  form!:FormGroup
+  formSignup!:FormGroup
 
   constructor(private activatedRoute:ActivatedRoute){
     this.activatedRoute.params.subscribe(params => {
@@ -17,6 +20,13 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit():void{
+
+  }
+
+  login():void{
+
+  }
+  signup():void{
 
   }
 }
