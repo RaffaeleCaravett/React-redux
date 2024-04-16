@@ -1,13 +1,10 @@
 package com.example.blogs.user;
 
-import com.example.blogs.blog.Blog;
 import com.example.blogs.blog.BlogService;
-import com.example.blogs.exceptions.BadRequestException;
 import com.example.blogs.exceptions.NotFoundException;
 import com.example.blogs.payloads.entities.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Service;
+ import org.springframework.stereotype.Service;
 
 import java.util.List;
 

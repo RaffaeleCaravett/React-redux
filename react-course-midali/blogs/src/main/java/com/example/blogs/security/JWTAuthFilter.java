@@ -1,5 +1,6 @@
 package com.example.blogs.security;
 
+import com.example.blogs.blog.BlogService;
 import com.example.blogs.exceptions.UnauthorizedException;
 import com.example.blogs.user.User;
 import com.example.blogs.user.UserService;
