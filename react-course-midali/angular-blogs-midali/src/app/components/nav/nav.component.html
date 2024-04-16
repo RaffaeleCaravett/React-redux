@@ -1,1 +1,13 @@
-<p>nav works!</p>
+<nav class="p-3 bg-warning text-center">
+  <div class="container">
+    <div class="row">
+<div class="col-md-6">
+  <h2>Home</h2>
+</div>
+<div class="col-md-6">
+  <h2 *ngIf="!authenticated">Login/Signup</h2>
+  <h2 *ngIf="authenticated">Logout</h2>
+</div>
+    </div>
+  </div>
+</nav>
