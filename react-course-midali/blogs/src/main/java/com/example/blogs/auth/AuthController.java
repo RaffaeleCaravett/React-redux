@@ -49,6 +49,13 @@ public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO
     }
     }
 
-
+    @GetMapping("/verifyAccessToken/{token}")
+    public User verifyAccessToken(@PathVariable String token){
+    return authService.verifyAccessToken(token);
+    }
+    @GetMapping("/verifyRefreshToken/{token}")
+    public Tokens verifyRefreshToken(@PathVariable String token){
+        return authService.verifyRefreshToken(token);
+    }
 
 }
