@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit{
   form!:FormGroup
   formSignup!:FormGroup
 
-  constructor(private activatedRoute:ActivatedRoute){
+  constructor(private activatedRoute:ActivatedRoute,private authService:AuthService){
     this.activatedRoute.params.subscribe(params => {
       this.param=params['param']
     })
@@ -34,9 +35,9 @@ export class LoginComponent implements OnInit{
   }
 
   login():void{
-
+this.authService.login({email:'gasg',password:'ihihi'}).subscribe((Data:any)=>{console.log(Data)})
   }
   signup():void{
-
+this.authService.login({email:'gasg',password:'ihihi',nome:'gasg',cognome:'gadsgds'}).subscribe((Data:any)=>{console.log(Data)})
   }
 }
