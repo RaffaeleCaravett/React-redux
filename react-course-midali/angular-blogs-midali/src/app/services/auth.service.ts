@@ -7,11 +7,9 @@ import { environment } from "../core/environment";
 })
 
 
-export class ContactService{
+export class AuthService{
 
 private auth:string='/auth'
-private categorie:string='/categorie'
-private richiestaTalk:string='/richiesteTalk'
 constructor(private http:HttpClient){}
 
 

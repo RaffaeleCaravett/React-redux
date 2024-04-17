@@ -38,6 +38,6 @@ export class LoginComponent implements OnInit{
 this.authService.login({email:'gasg',password:'ihihi'}).subscribe((Data:any)=>{console.log(Data)})
   }
   signup():void{
-this.authService.login({email:'gasg',password:'ihihi',nome:'gasg',cognome:'gadsgds'}).subscribe((Data:any)=>{console.log(Data)})
+this.authService.signup({email:'gasg',password:'ihihi',nome:'gasg',cognome:'gadsgds'}).subscribe((Data:any)=>{console.log(Data)})
   }
 }
