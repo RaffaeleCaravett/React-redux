@@ -7,9 +7,11 @@
 <div class="col-md-6">
   <form [formGroup]="form" class="border p-5 shadow rounded" *ngIf="param=='login'">
     <label class="p-2">Email</label><br>
-    <input type="text" class="p-2 w-50"><br>
+    <input type="text" class="p-2 w-50" formControlName="email"><br>
+    <p *ngIf="submitted==true && form.controls['email'].invalid">Email non valida.</p><br>
     <label class="p-2">Password</label><br>
-    <input type="text" class="p-2 w-50"><br>
+    <input type="text" class="p-2 w-50" formControlName="password"><br>
+    <p *ngIf="submitted==true && form.controls['password'].invalid">Password non valida.</p><br>
     <button class="btn m-3 p-2 btn-light" (click)="login()">Login</button>
   </form>
   <form [formGroup]="formSignup" class="border p-5 shadow rounded" *ngIf="param=='signup'">
