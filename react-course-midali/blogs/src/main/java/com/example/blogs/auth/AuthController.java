@@ -30,6 +30,8 @@ public class AuthController {
 public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO, BindingResult validation){
     if(userRepository.findByEmail(userRegistrationDTO.email()).isPresent()){
         throw new BadRequestException("User con email " + userRegistrationDTO.email() + " già presente in db.");
+    }else if(validation.hasErrors()){
+        throw new BadRequestException(validation.getAllErrors());
     }
 
   return authService.save(userRegistrationDTO);
