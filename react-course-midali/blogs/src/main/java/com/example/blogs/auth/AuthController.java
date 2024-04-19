@@ -44,6 +44,8 @@ public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO
             throw new BadRequestException("La password non coincide con l'originale.");
         }
         return authService.generateTokens(user);
+    }else if(validation.hasErrors()){
+        throw new BadRequestException(validation.getAllErrors());
     }else{
         throw new BadRequestException("Email non presente in db.");
     }
