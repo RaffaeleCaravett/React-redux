@@ -28,27 +28,26 @@ public class AuthController {
 
 @PostMapping("")
 public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO, BindingResult validation){
-    if(userRepository.findByEmail(userRegistrationDTO.email()).isPresent()){
-        throw new BadRequestException("User con email " + userRegistrationDTO.email() + " già presente in db.");
-    }else if(validation.hasErrors()){
+    if(validation.hasErrors()){
         throw new BadRequestException(validation.getAllErrors());
+    }else if(userRepository.findByEmail(userRegistrationDTO.email()).isPresent()){
+        throw new BadRequestException("User con email " + userRegistrationDTO.email() + " già presente in db.");
     }
-
   return authService.save(userRegistrationDTO);
 
     }
     @PostMapping("/login")
     public Tokens login(@RequestBody @Validated UserLoginDTO userLoginDTO,BindingResult validation){
-    if(userRepository.findByEmail(userLoginDTO.email()).isPresent()){
+        if(validation.hasErrors()){
+            throw new BadRequestException(validation.getAllErrors());
+        }else if(userRepository.findByEmail(userLoginDTO.email()).isPresent()){
         User user = userRepository.findByEmail(userLoginDTO.email()).get();
 
         if(!bCryptPasswordEncoder.matches(userLoginDTO.password(), user.getPassword())){
             throw new BadRequestException("La password non coincide con l'originale.");
         }
         return authService.generateTokens(user);
-    }else if(validation.hasErrors()){
-        throw new BadRequestException(validation.getAllErrors());
-    }else{
+    } else{
         throw new BadRequestException("Email non presente in db.");
     }
     }
