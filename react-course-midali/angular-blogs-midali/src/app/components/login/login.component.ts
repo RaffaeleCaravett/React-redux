@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit{
   formSignup!:FormGroup
   submitted:boolean=false
   loginError:any=null
-  constructor(private activatedRoute:ActivatedRoute,private authService:AuthService){
+  signupError:any=null
+  constructor(private activatedRoute:ActivatedRoute,private authService:AuthService,private router:Router){
     this.activatedRoute.params.subscribe(params => {
       this.param=params['param']
     })
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit{
 
   ngOnInit():void{
     this.submitted=false
+    this.loginError=null
+    this.signupError=null
     this.form= new FormGroup({
       email:new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       password:new FormControl('',[Validators.required,Validators.minLength(6)])
@@ -41,13 +44,12 @@ this.formSignup.reset()
   login():void{
     this.submitted=true
     if(this.form.valid){
-      this.authService.login({email:'dsafdsf'||this.form.controls['email'].value,password:this.form.controls['password'].value}).subscribe({
+      this.authService.login({email:this.form.controls['email'].value,password:this.form.controls['password'].value}).subscribe({
         next:(Data:any)=>{
           console.log(Data)
         this.loginError=null
         },
         error:(err:any)=>{
-          console.log(err)
           this.loginError=err.error.message
         },
         complete:()=>{}
@@ -55,6 +57,26 @@ this.formSignup.reset()
     }
   }
   signup():void{
-this.authService.register({email:'gasg',password:'ihihi',nome:'gasg',cognome:'gadsgds'}).subscribe((Data:any)=>{console.log(Data)})
+    this.submitted=true
+    if(this.formSignup.valid&&this.formSignup.controls['password'].value==this.formSignup.controls['ripetiPassword'].value){
+    this.authService.register(
+      {
+      email:this.formSignup.controls['email'].value,
+      password:this.formSignup.controls['password'].value,
+      nome:this.formSignup.controls['nome'].value,
+      cognome:this.formSignup.controls['cognome'].value
+    }).subscribe({
+      next:(Data:any)=>{
+      this.signupError=null
+      this.router.navigate(['/login','login'])
+      },
+      error:(err:any)=>{
+        this.signupError=err.error.message
+      },
+      complete:()=>{}
+    })
+  }else if(this.formSignup.controls['password'].value!=this.formSignup.controls['ripetiPassword'].value){
+    this.signupError="Le password non coincidono"
   }
+}
 }
