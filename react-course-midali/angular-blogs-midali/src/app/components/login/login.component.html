@@ -18,14 +18,19 @@
   <form [formGroup]="formSignup" class="border p-5 shadow rounded" *ngIf="param=='signup'">
     <label class="p-2">Nome</label><br>
     <input type="text" class="p-2 w-50" formControlName="nome"><br>
+        <p *ngIf="submitted==true && formSignup.controls['nome'].invalid" class="text-danger fw-bolder p-1">Campo non valido. Almeno 2 carateri.</p><br>
     <label class="p-2">Cognome</label><br>
     <input type="text" class="p-2 w-50" formControlName="cognome"><br>
+        <p *ngIf="submitted==true && formSignup.controls['cognome'].invalid" class="text-danger fw-bolder p-1">Campo non valido. Almeno 2 carateri.</p><br>
     <label class="p-2">Email</label><br>
     <input type="text" class="p-2 w-50" formControlName="email"><br>
+        <p *ngIf="submitted==true && formSignup.controls['email'].invalid" class="text-danger fw-bolder p-1">Email non valida. Prova ad inserire un formato tipo : a&#64;a.com</p><br>
     <label class="p-2">Password</label><br>
     <input type="text" class="p-2 w-50" formControlName="password"><br>
+        <p *ngIf="submitted==true && formSignup.controls['password'].invalid" class="text-danger fw-bolder p-1">Campo non valido. Almeno 6 caratteri.</p><br>
     <label class="p-2">Ripeti Password</label><br>
     <input type="text" class="p-2 w-50" formControlName="ripeti"><br>
+        <p *ngIf="submitted==true && formSignup.controls['ripeti'].invalid" class="text-danger fw-bolder p-1">Campo non valido. Almeno 6 caratteri.</p><br>
     <button class="btn m-3 p-2 btn-light" type="button" (click)="signup()">Signup</button>
     <p *ngIf="submitted&&signupError" class="text-danger fw-bolder p-1">{{signupError}}</p>
   </form>

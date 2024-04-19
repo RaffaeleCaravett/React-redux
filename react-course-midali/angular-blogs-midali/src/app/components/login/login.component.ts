@@ -19,6 +19,11 @@ export class LoginComponent implements OnInit{
   constructor(private activatedRoute:ActivatedRoute,private authService:AuthService,private router:Router){
     this.activatedRoute.params.subscribe(params => {
       this.param=params['param']
+      this.submitted=false
+      this.loginError=null
+      this.signupError=null
+      this.form.reset()
+      this.formSignup.reset()
     })
   }
 
