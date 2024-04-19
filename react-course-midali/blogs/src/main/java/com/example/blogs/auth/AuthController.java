@@ -29,7 +29,8 @@ public class AuthController {
 @PostMapping("")
 public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO, BindingResult validation){
     if(validation.hasErrors()){
-        throw new BadRequestException(validation.getAllErrors());
+        String error = validation.getAllErrors().get(0).getDefaultMessage();
+        throw new BadRequestException(error);
     }else if(userRepository.findByEmail(userRegistrationDTO.email()).isPresent()){
         throw new BadRequestException("User con email " + userRegistrationDTO.email() + " già presente in db.");
     }
@@ -39,7 +40,8 @@ public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO
     @PostMapping("/login")
     public Tokens login(@RequestBody @Validated UserLoginDTO userLoginDTO,BindingResult validation){
         if(validation.hasErrors()){
-            throw new BadRequestException(validation.getAllErrors());
+            String error = validation.getAllErrors().get(0).getDefaultMessage();
+            throw new BadRequestException(error);
         }else if(userRepository.findByEmail(userLoginDTO.email()).isPresent()){
         User user = userRepository.findByEmail(userLoginDTO.email()).get();
 
