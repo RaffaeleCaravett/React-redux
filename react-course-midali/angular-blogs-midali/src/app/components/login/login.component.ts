@@ -41,7 +41,7 @@ this.formSignup.reset()
   login():void{
     this.submitted=true
     if(this.form.valid){
-      this.authService.login({email:'gasg',password:'ihihi'}).subscribe({
+      this.authService.login({email:'dsafdsf'||this.form.controls['email'].value,password:this.form.controls['password'].value}).subscribe({
         next:(Data:any)=>{
           console.log(Data)
         this.loginError=null
