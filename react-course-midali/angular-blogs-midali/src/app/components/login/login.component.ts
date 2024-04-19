@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit{
   form!:FormGroup
   formSignup!:FormGroup
   submitted:boolean=false
-
+  loginError:any=null
   constructor(private activatedRoute:ActivatedRoute,private authService:AuthService){
     this.activatedRoute.params.subscribe(params => {
       this.param=params['param']
@@ -41,7 +41,17 @@ this.formSignup.reset()
   login():void{
     this.submitted=true
     if(this.form.valid){
-      this.authService.login({email:'gasg',password:'ihihi'}).subscribe((Data:any)=>{console.log(Data)})
+      this.authService.login({email:'gasg',password:'ihihi'}).subscribe({
+        next:(Data:any)=>{
+          console.log(Data)
+        this.loginError=null
+        },
+        error:(err:any)=>{
+          console.log(err)
+          this.loginError=err.error.message
+        },
+        complete:()=>{}
+      })
     }
   }
   signup():void{

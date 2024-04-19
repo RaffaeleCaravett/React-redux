@@ -8,12 +8,12 @@
   <form [formGroup]="form" class="border p-5 shadow rounded" *ngIf="param=='login'">
     <label class="p-2">Email</label><br>
     <input type="text" class="p-2 w-50" formControlName="email"><br>
-    <p *ngIf="submitted==true && form.controls['email'].invalid" class="text-danger fw-bolder">Email non valida. Prova ad inserire un formato tipo : a&#64;a.com</p><br>
+    <p *ngIf="submitted==true && form.controls['email'].invalid" class="text-danger fw-bolder p-1">Email non valida. Prova ad inserire un formato tipo : a&#64;a.com</p><br>
     <label class="p-2">Password</label><br>
     <input type="text" class="p-2 w-50" formControlName="password"><br>
-    <p *ngIf="submitted==true && form.controls['password'].invalid" class="text-danger fw-bolder">Password non valida. Almeno 6 caratteri.</p><br>
+    <p *ngIf="submitted==true && form.controls['password'].invalid" class="text-danger fw-bolder p-1">Password non valida. Almeno 6 caratteri.</p><br>
     <button class="btn m-3 p-2 btn-light" (click)="login()">Login</button>
-    <p *ngIf="loginError">{{loginError}}</p>
+    <p *ngIf="loginError" class="text-danger fw-bolder p-1">{{loginError}}</p>
   </form>
   <form [formGroup]="formSignup" class="border p-5 shadow rounded" *ngIf="param=='signup'">
     <label class="p-2">Nome</label><br>
