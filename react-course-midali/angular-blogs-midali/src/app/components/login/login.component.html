@@ -12,21 +12,22 @@
     <label class="p-2">Password</label><br>
     <input type="text" class="p-2 w-50" formControlName="password"><br>
     <p *ngIf="submitted==true && form.controls['password'].invalid" class="text-danger fw-bolder p-1">Password non valida. Almeno 6 caratteri.</p><br>
-    <button class="btn m-3 p-2 btn-light" (click)="login()">Login</button>
-    <p *ngIf="loginError" class="text-danger fw-bolder p-1">{{loginError}}</p>
+    <button class="btn m-3 p-2 btn-light"  type="button" (click)="login()">Login</button>
+    <p *ngIf="submitted&&loginError" class="text-danger fw-bolder p-1">{{loginError}}</p>
   </form>
   <form [formGroup]="formSignup" class="border p-5 shadow rounded" *ngIf="param=='signup'">
     <label class="p-2">Nome</label><br>
-    <input type="text" class="p-2 w-50"><br>
+    <input type="text" class="p-2 w-50" formControlName="nome"><br>
     <label class="p-2">Cognome</label><br>
-    <input type="text" class="p-2 w-50"><br>
+    <input type="text" class="p-2 w-50" formControlName="cognome"><br>
     <label class="p-2">Email</label><br>
-    <input type="text" class="p-2 w-50"><br>
+    <input type="text" class="p-2 w-50" formControlName="email"><br>
     <label class="p-2">Password</label><br>
-    <input type="text" class="p-2 w-50"><br>
+    <input type="text" class="p-2 w-50" formControlName="password"><br>
     <label class="p-2">Ripeti Password</label><br>
-    <input type="text" class="p-2 w-50"><br>
-    <button class="btn m-3 p-2 btn-light" (click)="signup()">Signup</button>
+    <input type="text" class="p-2 w-50" formControlName="ripeti"><br>
+    <button class="btn m-3 p-2 btn-light" type="button" (click)="signup()">Signup</button>
+    <p *ngIf="submitted&&signupError" class="text-danger fw-bolder p-1">{{signupError}}</p>
   </form>
 </div>
   </div>

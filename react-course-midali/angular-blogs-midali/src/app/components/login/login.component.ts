@@ -54,11 +54,13 @@ this.formSignup.reset()
         },
         complete:()=>{}
       })
+    }else{
+      this.loginError="Il form non è completo."
     }
   }
   signup():void{
     this.submitted=true
-    if(this.formSignup.valid&&this.formSignup.controls['password'].value==this.formSignup.controls['ripetiPassword'].value){
+    if(this.formSignup.valid&&this.formSignup.controls['password'].value==this.formSignup.controls['ripeti'].value){
     this.authService.register(
       {
       email:this.formSignup.controls['email'].value,
@@ -75,8 +77,11 @@ this.formSignup.reset()
       },
       complete:()=>{}
     })
-  }else if(this.formSignup.controls['password'].value!=this.formSignup.controls['ripetiPassword'].value){
-    this.signupError="Le password non coincidono"
+  }else if(this.formSignup.valid&&this.formSignup.controls['password'].value!=this.formSignup.controls['ripeti'].value){
+    this.signupError="Le password non coincidono."
+  }else{
+    this.signupError="Il form non è completo."
   }
 }
+
 }
