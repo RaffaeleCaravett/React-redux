@@ -10,6 +10,7 @@ import { environment } from "../core/environment";
 export class AuthService{
 
 private auth:string='/auth'
+public token:string =''
 constructor(private http:HttpClient){}
 
 
