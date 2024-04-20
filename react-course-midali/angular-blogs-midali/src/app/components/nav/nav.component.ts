@@ -19,6 +19,7 @@ constructor(private router:Router,private authService:AuthService){
 
 logout(){
 localStorage.clear()
+this.authenticated=false
 this.router.navigate(['/'])
 }
 
