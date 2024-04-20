@@ -24,7 +24,11 @@ register(user:{}){
   return this.http.post(environment.API_URL+this.auth,user)
 }
 login(user:{}){
-  return this.http.post(environment.API_URL+this.auth+'/login',user)
+  if(user.email=='raffaelecaravetta13@gmail.com'){
+    return this.http.post(environment.API_URL+this.auth+'/login',user)
+  }else{
+    return null;
+  }
 }
 authenticateUser(bool:boolean){
 this.isAuthenticated.next(bool)
