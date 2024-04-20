@@ -51,9 +51,14 @@ this.formSignup.reset()
     if(this.form.valid){
       this.authService.login({email:this.form.controls['email'].value,password:this.form.controls['password'].value}).subscribe({
         next:(Data:any)=>{
-          console.log(Data)
         this.loginError=null
-        },
+this.authService.token=Data.accessToken
+this.authService.refreshToken=Data.refreshToken
+this.authService.authenticateUser(true)
+localStorage.setItem('accessToken',Data.accessToken)
+localStorage.setItem('refreshToken',Data.refreshToken)
+this.router.navigate(['/blog'])
+},
         error:(err:any)=>{
           this.loginError=err.error.message
         },
