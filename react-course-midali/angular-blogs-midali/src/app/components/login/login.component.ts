@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { loginDTO } from 'src/app/core/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -49,7 +50,11 @@ this.formSignup.reset()
   login():void{
     this.submitted=true
     if(this.form.valid&&this.form.controls['email'].value=='raffaelecaravetta13@gmail.com'){
-      this.authService.login({email:this.form.controls['email'].value,password:this.form.controls['password'].value}).subscribe({
+      let user:loginDTO ={
+        email:this.form.controls['email'].value,
+        password:this.form.controls['password'].value
+      }
+  this.authService.login(user)!.subscribe({
         next:(Data:any)=>{
         this.loginError=null
 this.authService.token=Data.accessToken
