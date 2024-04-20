@@ -30,5 +30,10 @@ authenticateUser(bool:boolean){
 this.isAuthenticated.next(bool)
 return this.authGuard.authenticateUser(bool)
 }
-
+verifyAccessToken(token:string){
+return this.http.get(environment.API_URL+this.auth+'/verifyAccessToken/'+token)
+}
+verifyRefreshToken(token:string){
+return this.http.get(environment.API_URL+this.auth+'/verifyRefreshToken/'+token)
+}
 }
