@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { loginDTO } from 'src/app/core/interfaces';
+import { loginDTO, registrationDTO } from 'src/app/core/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -76,13 +76,14 @@ this.router.navigate(['/blog'])
   signup():void{
     this.submitted=true
     if(this.formSignup.valid&&this.formSignup.controls['password'].value==this.formSignup.controls['ripeti'].value){
-    this.authService.register(
-      {
-      email:this.formSignup.controls['email'].value,
+      let user:registrationDTO ={
+        email:this.formSignup.controls['email'].value,
       password:this.formSignup.controls['password'].value,
       nome:this.formSignup.controls['nome'].value,
       cognome:this.formSignup.controls['cognome'].value
-    }).subscribe({
+      }
+    this.authService.register(
+      user)!.subscribe({
       next:(Data:any)=>{
       this.signupError=null
       this.router.navigate(['/login','login'])

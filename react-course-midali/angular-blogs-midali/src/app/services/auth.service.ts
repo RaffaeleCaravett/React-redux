@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../core/environment";
 import { AuthGuard } from "../core/auth.guard";
 import { BehaviorSubject } from "rxjs";
-import { loginDTO } from "../core/interfaces";
+import { loginDTO, registrationDTO } from "../core/interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ constructor(private http:HttpClient,private authGuard:AuthGuard){}
 
 
 
-register(user:{}){
+register(user:registrationDTO){
   return this.http.post(environment.API_URL+this.auth,user)
 }
 login(user:loginDTO){
