@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-blogs',
@@ -9,13 +10,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class BlogsComponent implements OnInit{
 user:any
-constructor(private authService:AuthService,private router:Router){}
+blogs:any
+errorBlog:string=''
+constructor(private authService:AuthService,private router:Router,private blogService:BlogService){}
 
 ngOnInit(): void {
   this.authService.verifyAccessToken(localStorage.getItem('accessToken')!).subscribe({
     next:(success:any)=>{
     this.user=success
-    console.log(this.user)
     this.authService.token=localStorage.getItem('accessToken')!
     this.authService.authenticateUser(true)
       this.router.navigate(['/blog'])
@@ -29,6 +31,14 @@ this.router.navigate([''])
     },
     complete:()=>{}
 })
-
+this.blogService.getAll().subscribe({
+  next:(blogs:any)=>{
+    this.blogs=blogs
+    },
+    error:(err:any)=>{
+this.errorBlog=err.error.message
+    },
+    complete:()=>{}
+})
 }
 }

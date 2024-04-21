@@ -10,7 +10,7 @@ import { BlogDTO } from "../core/interfaces";
 })
 
 
-export class AuthService{
+export class BlogService{
 
 
 private blog:string = '/blog'
