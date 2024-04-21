@@ -6,6 +6,16 @@
   <div class="col-md-4 p-3">
 <div class="border rounded shadow bg-l p-3">
   <h2>Recupera un blog post</h2>
+  <p class="text-danger py-3" *ngIf="errorBlog!=''">{{errorBlog}}</p>
+  <form formGroup="blogForm">
+    <label>Cerca per titolo</label>
+    <input type="text" class="form-control" formControlName="titolo">
+  </form>
+  <ul *ngIf="errorBlog==''&&blogs">
+    <li *ngFor="let b of blogs.content">
+    {{b.id + " - " + b.titolo}}</li>
+  </ul>
+
 </div>
   </div>
   <div class="col-md-8 p-3">

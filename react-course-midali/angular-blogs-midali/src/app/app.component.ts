@@ -16,7 +16,6 @@ export class AppComponent implements OnInit{
     if(localStorage.getItem('accessToken')){
       this.authService.verifyAccessToken(localStorage.getItem('accessToken')!).subscribe({
         next:(success:any)=>{
-        localStorage.setItem('user',JSON.stringify(success))
         this.authService.token=localStorage.getItem('accessToken')!
         this.authService.authenticateUser(true)
           this.router.navigate(['/blog'])
