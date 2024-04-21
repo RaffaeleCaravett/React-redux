@@ -19,8 +19,13 @@ private categorie:string = '/categorie'
 constructor(private http:HttpClient,private authGuard:AuthGuard){}
 
 
-getAll(){
+getAll(index?:number){
+  if(!index){
   return this.http.get(environment.API_URL+this.blog)
+  }else{
+    return this.http.get(environment.API_URL+this.blog+`?page=${index}`)
+  }
+
 }
 post(blog:BlogDTO){
   return this.http.post(environment.API_URL+this.blog,blog)

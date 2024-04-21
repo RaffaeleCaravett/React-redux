@@ -23,8 +23,8 @@
   <p class="text-danger fw-bold" *ngIf="blogs&&blogs.content&&blogs.content.length==0||
   blogs&&!blogs.content&&blogs.length==0">Non ci sono blog presenti.</p>
   <div class="d-flex w-100 justify-content-center" *ngIf="blogs&&blogs.content">
-    <button class="btn m-1" *ngIf="blogs.first!=true" (click)="getBlogs(blogs.number)"><mat-icon>arrow_back</mat-icon></button>
-    <button class="btn m-1" *ngIf="blogs.last!=true" (click)="getBlogs(blogs.number+2)"><mat-icon>arrow_forward</mat-icon></button>
+    <button class="btn m-1" *ngIf="blogs.first!=true" (click)="getBlogs(blogs.number-1)"><mat-icon>arrow_back</mat-icon></button>
+    <button class="btn m-1" *ngIf="blogs.last!=true" (click)="getBlogs(blogs.number+1)"><mat-icon>arrow_forward</mat-icon></button>
   </div>
 </div>
   </div>

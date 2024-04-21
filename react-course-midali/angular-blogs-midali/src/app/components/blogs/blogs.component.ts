@@ -61,4 +61,15 @@ if(this.blogForm.valid){
   })
 }
 }
+getBlogs(index:number){
+this.blogService.getAll(index).subscribe({
+  next:(blogs:any)=>{
+    this.blogs=blogs
+    },
+    error:(err:any)=>{
+this.errorBlog=err.error.message
+    },
+    complete:()=>{}
+})
+}
 }
