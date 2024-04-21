@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { BlogService } from 'src/app/services/blog.service';
@@ -12,6 +13,7 @@ export class BlogsComponent implements OnInit{
 user:any
 blogs:any
 errorBlog:string=''
+blogForm!:FormGroup
 constructor(private authService:AuthService,private router:Router,private blogService:BlogService){}
 
 ngOnInit(): void {
@@ -40,5 +42,12 @@ this.errorBlog=err.error.message
     },
     complete:()=>{}
 })
+this.blogForm= new FormGroup({
+  titolo: new FormControl('',Validators.required)
+})
+}
+
+searchForm(){
+
 }
 }

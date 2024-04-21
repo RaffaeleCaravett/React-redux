@@ -7,9 +7,10 @@
 <div class="border rounded shadow bg-l p-3">
   <h2>Recupera un blog post</h2>
   <p class="text-danger py-3" *ngIf="errorBlog!=''">{{errorBlog}}</p>
-  <form formGroup="blogForm">
-    <label>Cerca per titolo</label>
+  <form [formGroup]="blogForm" (ngSubmit)="searchForm()">
+    <label class="p-1">Cerca per titolo</label>
     <input type="text" class="form-control" formControlName="titolo">
+    <button class="btn m-1" type="submit">Cerca</button>
   </form>
   <ul *ngIf="errorBlog==''&&blogs">
     <li *ngFor="let b of blogs.content">
