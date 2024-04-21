@@ -14,6 +14,7 @@ export class AuthService{
 
 
 private blog:string = '/blog'
+private categorie:string = '/categorie'
 
 constructor(private http:HttpClient,private authGuard:AuthGuard){}
 
@@ -31,4 +32,7 @@ delete(id:number){
   return this.http.delete(environment.API_URL+this.blog+`/${id}`)
 }
 
+getAllCategories(){
+  return this.http.get(environment.API_URL+this.blog+this.categorie)
+}
 }
