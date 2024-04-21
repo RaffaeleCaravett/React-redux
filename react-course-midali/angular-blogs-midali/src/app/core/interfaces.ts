@@ -9,3 +9,12 @@ export interface registrationDTO {
   nome:string,
   cognome:string
 }
+
+export interface BlogDTO{
+  testo:string,
+  categoria:string,
+  autore:string,
+  titolo:string,
+  tempoLettura:number,
+  user_id:number
+}
