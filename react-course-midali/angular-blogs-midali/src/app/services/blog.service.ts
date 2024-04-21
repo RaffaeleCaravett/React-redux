@@ -35,4 +35,7 @@ delete(id:number){
 getAllCategories(){
   return this.http.get(environment.API_URL+this.blog+this.categorie)
 }
+findByTitle(title:string){
+  return this.http.get(environment.API_URL+this.blog+`/titolo/${title}`)
+}
 }

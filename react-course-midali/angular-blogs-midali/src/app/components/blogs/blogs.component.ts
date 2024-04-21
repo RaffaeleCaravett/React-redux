@@ -48,6 +48,17 @@ this.blogForm= new FormGroup({
 }
 
 searchForm(){
-
+if(this.blogForm.valid){
+  this.errorBlog=''
+  this.blogService.findByTitle(this.blogForm.controls['titolo'].value).subscribe({
+    next:(blogs:any)=>{
+      this.blogs=blogs
+      },
+      error:(err:any)=>{
+      this.errorBlog=err.error.message
+      },
+      complete:()=>{}
+  })
+}
 }
 }
