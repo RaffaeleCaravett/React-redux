@@ -80,4 +80,7 @@ public boolean deleteAllByUserId(long id){
         return false;
     }
 }
+public List<Blog> findByTitolo(String titolo){
+    return this.blogRepository.findByTitolo(titolo);
+}
 }

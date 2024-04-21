@@ -37,7 +37,10 @@ public class BlogController {
     public List<Blog> getByUserId(@PathVariable long id){
         return blogService.findByUserId(id);
     }
-
+    @GetMapping("/{titolo}")
+    public List<Blog> getByTitolo(@PathVariable String titolo){
+        return blogService.findByTitolo(titolo);
+    }
     @PutMapping("/{id}")
     @PreAuthorize("HasAuthority('Admin')")
     public Blog putById(@PathVariable long id, @RequestBody BlogDTO blogDTO){

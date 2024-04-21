@@ -10,4 +10,5 @@ public interface BlogRepository extends JpaRepository<Blog,Long> {
 
     List<Blog> findByUser_Id(long user_id);
     boolean deleteAllByUser_Id(long user_id);
+    List<Blog> findByTitolo(String titolo);
 }

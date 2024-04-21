@@ -1,6 +1,7 @@
 package com.example.blogs.auth;
 
 
+import com.example.blogs.enums.Categoria;
 import com.example.blogs.enums.Role;
 import com.example.blogs.exceptions.BadRequestException;
 import com.example.blogs.payloads.entities.Tokens;
@@ -14,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -63,4 +67,15 @@ public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO
         return authService.verifyRefreshToken(token);
     }
 
+    @GetMapping("/categorie")
+    public List<Categoria> getAllCategories(){
+    List<Categoria> categorias= new ArrayList<>();
+
+        categorias.add(Categoria.a);
+        categorias.add(Categoria.b);
+        categorias.add(Categoria.c);
+        categorias.add(Categoria.d);
+
+    return categorias;
+    }
 }
