@@ -14,6 +14,8 @@ user:any
 blogs:any
 errorBlog:string=''
 blogForm!:FormGroup
+insertBlogForm!:FormGroup
+categories:any[]=[]
 constructor(private authService:AuthService,private router:Router,private blogService:BlogService){}
 
 ngOnInit(): void {

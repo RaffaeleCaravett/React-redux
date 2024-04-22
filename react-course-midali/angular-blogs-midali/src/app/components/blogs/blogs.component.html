@@ -31,6 +31,21 @@
   <div class="col-md-8 p-3">
 <div class="border rounded shadow bg-l p-3">
   <h2>Inseriscine uno</h2>
+  <form [formGroup]="insertBlogForm">
+  <label for=""></label>
+  <input type="text" class="form-control">
+  <label for=""></label>
+  <select type="text" class="form-control">
+  <option value=""></option>
+  <option value="{{c}}" *ngFor="let c of categories">{{c}}</option>
+  </select>
+  <label for=""></label>
+  <input type="text" class="form-control">
+  <label for=""></label>
+  <input type="text" class="form-control">
+  <label for=""></label>
+  <input type="text" class="form-control">
+  </form>
 </div>
   </div>
     </div>
