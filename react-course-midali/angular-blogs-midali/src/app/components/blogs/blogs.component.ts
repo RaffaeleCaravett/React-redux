@@ -118,7 +118,9 @@ this.blogService.post(blog).subscribe(
       error:(err:any)=>{
   this.insertBlogError=err.error.message
       },
-      complete:()=>{}
+      complete:()=>{
+        this.getBlogs(0)
+      }
   }
 )
 }else{
