@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BlogDTO } from 'src/app/core/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { BlogService } from 'src/app/services/blog.service';
 
@@ -18,6 +19,7 @@ insertBlogForm!:FormGroup
 categories:any[]=[]
 insertBlogError:string=''
 insertBlogSubmitted:boolean=false
+showSuccessMessage:string=''
 constructor(private authService:AuthService,private router:Router,private blogService:BlogService){}
 
 ngOnInit(): void {
@@ -97,7 +99,28 @@ postBlog(){
   this.insertBlogError=""
   this.insertBlogSubmitted=true
 if(this.insertBlogForm.valid){
-
+let blog:BlogDTO={
+  titolo:this.insertBlogForm.controls['titolo'].value,
+  testo:this.insertBlogForm.controls['testo'].value,
+  autore:this.insertBlogForm.controls['autore'].value,
+  categoria:this.insertBlogForm.controls['categoria'].value,
+  user_id:this.user.id,
+  tempoLettura:this.insertBlogForm.controls['tempoLettura'].value
+}
+this.blogService.post(blog).subscribe(
+  {
+    next:(blog:any)=>{
+     this.insertBlogForm.reset()
+     this.insertBlogError=""
+     this.insertBlogSubmitted=false
+     this.showSuccessMessage='Blog inserito con successo.'
+      },
+      error:(err:any)=>{
+  this.insertBlogError=err.error.message
+      },
+      complete:()=>{}
+  }
+)
 }else{
   this.insertBlogError="Compila tutto il form"
 }

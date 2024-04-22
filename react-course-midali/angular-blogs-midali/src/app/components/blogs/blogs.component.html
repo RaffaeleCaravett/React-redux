@@ -34,12 +34,12 @@
   <form [formGroup]="insertBlogForm" class="row">
     <div class="col-md-8">
       <label class="p-2">Titolo</label>
-  <input type="text" class="form-control" formControlName="titolo">
+  <input type="text" class="form-control" formControlName="titolo" (input)="showSuccessMessage=''">
   <p class="text-danger p-2 fw-bold" *ngIf="insertBlogSubmitted&&insertBlogForm.controls['titolo'].invalid">Campo invalido.</p>
 </div>
     <div class="col-md-4">
        <label class="p-2">Categoria</label>
-  <select type="text" class="form-select" formControlName="categoria">
+  <select type="text" class="form-select" formControlName="categoria" (change)="showSuccessMessage=''">
     <option value=""></option>
   <option value="{{c}}" *ngFor="let c of categories">{{c}}</option>
   </select>
@@ -47,17 +47,17 @@
     </div>
  <div class="col-md-12">
   <label class="p-2">Testo</label>
-  <textarea type="text" class="form-control" formControlName="testo"></textarea>
+  <textarea type="text" class="form-control" formControlName="testo" (input)="showSuccessMessage=''"></textarea>
   <p class="text-danger p-2 fw-bold" *ngIf="insertBlogSubmitted&&insertBlogForm.controls['testo'].invalid">Campo invalido.</p>
  </div>
  <div class="col-md-8">
     <label class="p-2">Autore</label>
-  <input type="text" class="form-control" formControlName="autore">
+  <input type="text" class="form-control" formControlName="autore" (input)="showSuccessMessage=''">
   <p class="text-danger p-2 fw-bold" *ngIf="insertBlogSubmitted&&insertBlogForm.controls['autore'].invalid">Campo invalido.</p>
  </div>
  <div class="col-md-4">
  <label class="p-2">Tempo lettura</label>
-  <input type="number" class="form-control" formControlName="tempoLettura">
+  <input type="number" class="form-control" formControlName="tempoLettura" (input)="showSuccessMessage=''">
   <p class="text-danger p-2 fw-bold" *ngIf="insertBlogSubmitted&&insertBlogForm.controls['tempoLettura'].invalid">Valore minimo = 1</p>
  </div>
  <div class="col-md-12 p-2">
@@ -65,7 +65,8 @@
     Inserisci
   </button>
   <p class="py-3 text-danger fw-bold">{{insertBlogError}}</p>
- </div>
+  <p class="py-3 text-danger fw-bold">{{showSuccessMessage}}</p>
+</div>
   </form>
 </div>
   </div>
