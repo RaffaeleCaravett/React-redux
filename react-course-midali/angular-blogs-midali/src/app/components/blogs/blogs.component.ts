@@ -16,6 +16,8 @@ errorBlog:string=''
 blogForm!:FormGroup
 insertBlogForm!:FormGroup
 categories:any[]=[]
+insertBlogError:string=''
+insertBlogSubmitted:boolean=false
 constructor(private authService:AuthService,private router:Router,private blogService:BlogService){}
 
 ngOnInit(): void {
@@ -92,6 +94,12 @@ this.errorBlog=err.error.message
 })
 }
 postBlog(){
+  this.insertBlogError=""
+  this.insertBlogSubmitted=true
+if(this.insertBlogForm.valid){
 
+}else{
+  this.insertBlogError="Compila tutto il form"
+}
 }
 }
