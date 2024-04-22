@@ -47,6 +47,23 @@ this.errorBlog=err.error.message
 this.blogForm= new FormGroup({
   titolo: new FormControl('',Validators.required)
 })
+this.blogService.getAllCategories().subscribe({
+  next:(categories:any)=>{
+    this.categories=categories
+    },
+    error:(err:any)=>{
+this.categories=[]
+    },
+    complete:()=>{}
+})
+this.insertBlogForm= new FormGroup({
+  titolo:new FormControl('',Validators.required),
+  categoria:new FormControl('',Validators.required),
+  testo:new FormControl('',Validators.required),
+  autore:new FormControl('',Validators.required),
+  tempoLettura:new FormControl('',[Validators.required,Validators.min(1)]),
+})
+
 }
 
 searchForm(){
@@ -73,5 +90,8 @@ this.errorBlog=err.error.message
     },
     complete:()=>{}
 })
+}
+postBlog(){
+
 }
 }

@@ -14,6 +14,7 @@ export class BlogService{
 
 
 private blog:string = '/blog'
+private auth:string = '/auth'
 private categorie:string = '/categorie'
 
 constructor(private http:HttpClient,private authGuard:AuthGuard){}
@@ -38,7 +39,7 @@ delete(id:number){
 }
 
 getAllCategories(){
-  return this.http.get(environment.API_URL+this.blog+this.categorie)
+  return this.http.get(environment.API_URL+this.auth+this.categorie)
 }
 findByTitle(title:string){
   return this.http.get(environment.API_URL+this.blog+`/titolo/${title}`)
