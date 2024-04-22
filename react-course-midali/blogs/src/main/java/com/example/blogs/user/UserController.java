@@ -16,23 +16,23 @@ public class UserController {
     UserService userService;
 
     @PutMapping("/{id}")
-    @PreAuthorize("HasAuthority('Admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public User putById(@PathVariable long id, @RequestBody UserRegistrationDTO userRegistrationDTO){
         return userService.updateById(id,userRegistrationDTO);
     }
     @PutMapping("/me")
-    @PreAuthorize("HasAuthority('User')")
+    @PreAuthorize("hasAuthority('User')")
     public User putById(@AuthenticationPrincipal User currentUser, @RequestBody UserRegistrationDTO userRegistrationDTO){
         return userService.updateById(currentUser.getId(),userRegistrationDTO);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("HasAuthority('Admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public Boolean deleteById(@PathVariable long id){
         return userService.deleteById(id);
     }
     @DeleteMapping("/me")
-    @PreAuthorize("HasAuthority('User')")
+    @PreAuthorize("hasAuthority('User')")
     public Boolean deleteById(@AuthenticationPrincipal User currentUser, @RequestBody UserRegistrationDTO userRegistrationDTO){
         return userService.deleteById(currentUser.getId());
     }

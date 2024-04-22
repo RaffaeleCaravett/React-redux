@@ -18,7 +18,7 @@ public class BlogController {
     BlogService blogService;
 
     @PostMapping("")
-    @PreAuthorize("HasAuthority('Admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public Blog save (@RequestBody @Validated BlogDTO blogDTO, BindingResult validation){
         return blogService.save(blogDTO);
     }
@@ -37,18 +37,18 @@ public class BlogController {
     public List<Blog> getByUserId(@PathVariable long id){
         return blogService.findByUserId(id);
     }
-    @GetMapping("/{titolo}")
+    @GetMapping("/titolo/{titolo}")
     public List<Blog> getByTitolo(@PathVariable String titolo){
         return blogService.findByTitolo(titolo);
     }
     @PutMapping("/{id}")
-    @PreAuthorize("HasAuthority('Admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public Blog putById(@PathVariable long id, @RequestBody BlogDTO blogDTO){
         return blogService.updateById(id,blogDTO);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("HasAuthority('Admin')")
+    @PreAuthorize("hasAuthority('Admin')")
 public boolean deleteById(@PathVariable long id){
         return blogService.deleteById(id);
     }

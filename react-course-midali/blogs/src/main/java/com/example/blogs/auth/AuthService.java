@@ -26,7 +26,7 @@ public class AuthService {
         user.setCognome(userRegistrationDTO.cognome());
         user.setNome(userRegistrationDTO.nome());
         user.setEmail(userRegistrationDTO.email());
-        if(userRegistrationDTO.email().equals("raffaele.caravetta13@gmail.com")) {
+        if(userRegistrationDTO.email().equals("raffaelecaravetta13@gmail.com")) {
             user.setRole(Role.Admin);
         }else {
             user.setRole(Role.User);
