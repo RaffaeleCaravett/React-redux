@@ -4,6 +4,7 @@ import com.example.blogs.enums.Categoria;
 import com.example.blogs.exceptions.BadRequestException;
 import com.example.blogs.payloads.entities.BlogDTO;
 import com.example.blogs.user.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ public class BlogService {
 @Autowired
     UserService userService;
 
+@Transactional
 public Blog save(BlogDTO blogDTO){
 
     if(!blogRepository.findByTitoloContaining(blogDTO.titolo()).isEmpty()){
@@ -43,7 +45,7 @@ public Blog save(BlogDTO blogDTO){
     return blogRepository.save(blog);
 
 }
-
+@Transactional
 public Blog getById(long id){
     return blogRepository.findById(id).orElseThrow(()->new BadRequestException("User con id " + id + " non trovato."));
 }
@@ -56,16 +58,16 @@ public boolean deleteById(long id){
         return false;
     }
 }
-
+@Transactional
 public Page<Blog> findAll(int page, int size, String orderBy){
     Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
     return blogRepository.findAll(pageable);
 }
-
+@Transactional
 public List<Blog> findByUserId(long id){
     return blogRepository.findByUser_Id(id);
 }
-
+@Transactional
 public Blog updateById(long id,BlogDTO blogDTO){
 
     Blog blog = this.getById(id);
@@ -90,6 +92,7 @@ public boolean deleteAllByUserId(long id){
         return false;
     }
 }
+    @Transactional
 public List<Blog> findByTitolo(String titolo){
     return this.blogRepository.findByTitoloContaining(titolo);
 }
