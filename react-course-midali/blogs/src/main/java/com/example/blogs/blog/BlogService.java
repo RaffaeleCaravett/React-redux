@@ -21,6 +21,16 @@ public class BlogService {
     UserService userService;
 
 public Blog save(BlogDTO blogDTO){
+
+    if(!blogRepository.findByTitolo(blogDTO.titolo()).isEmpty()){
+        List<Blog> blogs = blogRepository.findByTitolo(blogDTO.titolo());
+        for(Blog b : blogs){
+            if(b.getTitolo().equals(blogDTO.titolo())){
+                throw new BadRequestException("Titolo già presente in database");
+            }
+        }
+    }
+
     Blog blog = new Blog();
 
     blog.setAutore(blogDTO.autore());
