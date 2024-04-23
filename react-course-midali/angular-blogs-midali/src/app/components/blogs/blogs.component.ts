@@ -82,6 +82,8 @@ if(this.blogForm.valid){
       },
       complete:()=>{}
   })
+}else{
+  this.getBlogs(0)
 }
 }
 getBlogs(index:number){
