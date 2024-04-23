@@ -16,7 +16,7 @@
     {{b.id + " - " + b.titolo}}</li>
   </ul>
   <ul *ngIf="errorBlog==''&&blogs&&!blogs.content">
-    <li *ngFor="let b of blogs">
+    <li *ngFor="let b of blogs" (click)="openDialog(b)">
     {{b.id + " - " + b.titolo}}</li>
   </ul>
   <p class="text-danger fw-bold" *ngIf="blogs&&blogs.content&&blogs.content.length==0||

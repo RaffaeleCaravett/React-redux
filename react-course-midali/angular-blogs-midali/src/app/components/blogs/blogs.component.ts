@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BlogDTO } from 'src/app/core/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
@@ -20,7 +21,7 @@ categories:any[]=[]
 insertBlogError:string=''
 insertBlogSubmitted:boolean=false
 showSuccessMessage:string=''
-constructor(private authService:AuthService,private router:Router,private blogService:BlogService){}
+constructor(private authService:AuthService,private router:Router,private blogService:BlogService,private dialog:MatDialog){}
 
 ngOnInit(): void {
   this.authService.verifyAccessToken(localStorage.getItem('accessToken')!).subscribe({
@@ -128,5 +129,9 @@ this.blogService.post(blog).subscribe(
 }else{
   this.insertBlogError="Compila tutto il form"
 }
+}
+
+openDialog(blog:any){
+
 }
 }

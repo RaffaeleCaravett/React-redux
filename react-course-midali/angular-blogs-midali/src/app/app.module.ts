@@ -11,12 +11,14 @@ import { LoginComponent } from './components/login/login.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { AuthGuard } from './core/auth.guard';
 import { TokenInterceptor } from './core/token.interceptor';
+import { ShowBlogComponent } from './components/show-blog/show-blog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { TokenInterceptor } from './core/token.interceptor';
     HomeComponent,
     LoginComponent,
     NotFoundComponent,
-    BlogsComponent
+    BlogsComponent,
+    ShowBlogComponent
 
   ],
   imports: [
@@ -37,7 +40,8 @@ import { TokenInterceptor } from './core/token.interceptor';
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuard,
