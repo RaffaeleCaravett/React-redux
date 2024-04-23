@@ -22,8 +22,8 @@ public class BlogService {
 
 public Blog save(BlogDTO blogDTO){
 
-    if(!blogRepository.findByTitolo(blogDTO.titolo()).isEmpty()){
-        List<Blog> blogs = blogRepository.findByTitolo(blogDTO.titolo());
+    if(!blogRepository.findByTitoloContainig(blogDTO.titolo()).isEmpty()){
+        List<Blog> blogs = this.findByTitolo(blogDTO.titolo());
         for(Blog b : blogs){
             if(b.getTitolo().equals(blogDTO.titolo())){
                 throw new BadRequestException("Titolo già presente in database");
@@ -91,6 +91,6 @@ public boolean deleteAllByUserId(long id){
     }
 }
 public List<Blog> findByTitolo(String titolo){
-    return this.blogRepository.findByTitolo(titolo);
+    return this.blogRepository.findByTitoloContainig(titolo);
 }
 }
