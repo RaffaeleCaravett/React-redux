@@ -22,7 +22,7 @@ public class BlogService {
 
 public Blog save(BlogDTO blogDTO){
 
-    if(!blogRepository.findByTitoloContainig(blogDTO.titolo()).isEmpty()){
+    if(!blogRepository.findByTitoloContaining(blogDTO.titolo()).isEmpty()){
         List<Blog> blogs = this.findByTitolo(blogDTO.titolo());
         for(Blog b : blogs){
             if(b.getTitolo().equals(blogDTO.titolo())){
@@ -91,6 +91,6 @@ public boolean deleteAllByUserId(long id){
     }
 }
 public List<Blog> findByTitolo(String titolo){
-    return this.blogRepository.findByTitoloContainig(titolo);
+    return this.blogRepository.findByTitoloContaining(titolo);
 }
 }
