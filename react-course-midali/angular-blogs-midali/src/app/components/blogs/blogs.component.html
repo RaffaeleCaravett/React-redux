@@ -13,11 +13,13 @@
   </form>
   <ul *ngIf="errorBlog==''&&blogs&&blogs.content">
     <li *ngFor="let b of blogs?.content">
-    {{b.id + " - " + b.titolo}}</li>
+      <button class="btn" (click)="openDialog(b)">{{b.id + " - " + b.titolo}}</button>
+    </li>
   </ul>
   <ul *ngIf="errorBlog==''&&blogs&&!blogs.content">
-    <li *ngFor="let b of blogs" (click)="openDialog(b)">
-    {{b.id + " - " + b.titolo}}</li>
+    <li *ngFor="let b of blogs">
+    <button class="btn" (click)="openDialog(b)">{{b.id + " - " + b.titolo}}</button>
+  </li>
   </ul>
   <p class="text-danger fw-bold" *ngIf="blogs&&blogs.content&&blogs.content.length==0||
   blogs&&!blogs.content&&blogs.length==0">Non ci sono blog presenti.</p>

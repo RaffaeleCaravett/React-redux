@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BlogDTO } from 'src/app/core/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { BlogService } from 'src/app/services/blog.service';
+import { ShowBlogComponent } from '../show-blog/show-blog.component';
 
 @Component({
   selector: 'app-blogs',
@@ -132,6 +133,9 @@ this.blogService.post(blog).subscribe(
 }
 
 openDialog(blog:any){
+  const dialogRef = this.dialog.open(ShowBlogComponent,{data:blog})
+
+dialogRef.afterClosed().subscribe(data=>{this.getBlogs(0)})
 
 }
 }
