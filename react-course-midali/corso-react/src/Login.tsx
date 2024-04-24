@@ -8,17 +8,34 @@ const [error,setError]= useState('')
 const [loginSection,setLoginSection] = useState(true)
 
 const login = () =>{
-  console.log('ihih')
-    if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email)&&!/^$/.test(password)) {
+const emailInput = document.getElementsByClassName('login')[0] as HTMLInputElement; 
+const passwordInput = document.getElementsByClassName('login')[1] as HTMLInputElement; 
+ const errorPasswordP = document.getElementsByClassName('password')[0] as HTMLInputElement; 
+ const errorEmailP = document.getElementsByClassName('email')[0] as HTMLInputElement; 
+
+ console.log(emailInput.value,passwordInput.value)
+
+if(passwordInput.value==''||passwordInput.value==null||passwordInput.value==undefined){
+    errorPasswordP.textContent='Stai lasciando questo campo vuoto.'
+}else{
+    errorPasswordP.textContent=''
+}
+
+if(emailInput.value==''||emailInput.value==null||emailInput.value==undefined){
+    errorEmailP.textContent='Stai lasciando questo campo vuoto.'
+}else{
+    errorEmailP.textContent=''
+}
+console.log(emailInput.value,passwordInput.value)
+if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email)&&!/^$/.test(password)) {
         console.log('here')
         const body = 
 {
     email:email,
     password:password
 }
-const inputEmail = document.getElementsByClassName('login')[0] as HTMLInputElement
 
-inputEmail.value=""
+
 
 fetch('http://localhost:3031/auth/login',{
     method: "POST", 
@@ -52,10 +69,9 @@ fetch('http://localhost:3031/auth/login',{
     }
 })
 
+  
+
 }
-
-    
-
 }
 
 
