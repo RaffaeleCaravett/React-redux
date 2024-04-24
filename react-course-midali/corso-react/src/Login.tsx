@@ -8,18 +8,7 @@ const [error,setError]= useState('')
 const [loginSection,setLoginSection] = useState(true)
 
 const login = () =>{
-    if(/^$/.test(password)){
-        document.getElementsByClassName('login')[1].textContent="Campo invalido. Inserisci del testo."
-    }else{
-        document.getElementsByClassName('login')[1].textContent=""
-    }
-    if(!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email)){
-document.getElementsByClassName('login')[0].textContent="Campo invalido. Prova una email tipo 'a@a.com'"
-    }else{
-        console.log('hiihi')
-        document.getElementsByClassName('login')[0].textContent="Campo invalido. Prova una email tipo 'a@a.com'"
-
-    }
+  console.log('ihih')
     if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email)&&!/^$/.test(password)) {
         console.log('here')
         const body = 
