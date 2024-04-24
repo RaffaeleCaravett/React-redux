@@ -13,7 +13,6 @@ const passwordInput = document.getElementsByClassName('login')[1] as HTMLInputEl
  const errorPasswordP = document.getElementsByClassName('password')[0] as HTMLInputElement; 
  const errorEmailP = document.getElementsByClassName('email')[0] as HTMLInputElement; 
 
- console.log(emailInput.value,passwordInput.value)
 
 if(passwordInput.value==''||passwordInput.value==null||passwordInput.value==undefined){
     errorPasswordP.textContent='Stai lasciando questo campo vuoto.'
@@ -26,9 +25,8 @@ if(emailInput.value==''||emailInput.value==null||emailInput.value==undefined){
 }else{
     errorEmailP.textContent=''
 }
-console.log(emailInput.value,passwordInput.value)
-if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email)&&!/^$/.test(password)) {
-        console.log('here')
+
+if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(emailInput.value)&&!/^$/.test(passwordInput.value)) {
         const body = 
 {
     email:email,
@@ -49,17 +47,14 @@ fetch('http://localhost:3031/auth/login',{
     return res.json();
 })
 .then(data=>{
-    if(data&&data.status!=200){
+    if(data&&data.status&&data.status!=200){
         setError(data.message)
+    }else if(data && !data.status){
+     emailInput.value=''
+     passwordInput.value=''
+
+     console.log(data)
     }
-    const inputEmail = document.getElementsByClassName('login')[0] as HTMLInputElement
-    const inputPassword = document.getElementsByClassName('login')[1] as HTMLInputElement
-
-    inputEmail.value=""
-    inputPassword.value=""
-
-    console.log(data)
-   
 })
 .catch((err)=>{
     if(err.name === 'AbortError') {
@@ -68,9 +63,9 @@ fetch('http://localhost:3031/auth/login',{
    setError(err)
     }
 })
-
-  
-
+}else if(emailInput.value.trim()!==''&&!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(emailInput.value)){
+    console.log('iuhih')
+    errorEmailP.textContent='Prova ad inserire una email tipo : gigi@finizio.com'
 }
 }
 
