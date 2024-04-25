@@ -75,13 +75,37 @@ fetch('http://localhost:3031/auth/login',{
 
 
 const signup = () => {
+
+const signupEmail = document.getElementsByClassName('signup')[0] as HTMLInputElement;
+const signupPassword = document.getElementsByClassName('signup')[1] as HTMLInputElement;
+const signupNome = document.getElementsByClassName('signup')[2] as HTMLInputElement;
+const signupCognome = document.getElementsByClassName('signup')[3] as HTMLInputElement;
+
+const signupEmailError = document.getElementsByClassName('error')[0] as HTMLInputElement;
+const signupPasswordError = document.getElementsByClassName('error')[1] as HTMLInputElement;
+const signupNomeError = document.getElementsByClassName('error')[2] as HTMLInputElement;
+const signupCognomeError = document.getElementsByClassName('error')[3] as HTMLInputElement;
+
+if(signupNome.value==''||!signupNome.value){
+    signupNomeError.textContent='Campo vuoto.'
+}
+if(signupCognome.value==''||!signupCognome.value){
+    signupCognomeError.textContent='Campo vuoto.'
+}
+if(signupEmail.value==''||!signupEmail.value){
+    signupEmailError.textContent='Campo vuoto. Inserisci un valore tipo gigi@finizio.com'
+}
+if(signupPassword.value==''||!signupPassword.value){
+    signupPasswordError.textContent='Campo vuoto.'
+}
+
 const body = {
     nome:nome,
     cognome:cognome,
     email:emailSignup,
     password:passwordSignup
 }
-
+if(signupEmail.value!=''){
 fetch('https://localhost:3031/auth',{
     method: "POST", 
     headers: {
@@ -109,6 +133,7 @@ setLoginSection(true)
     setError(err);
     }
 })
+}
 }
 
 const updateSection = (bool:boolean,str:string) => {
@@ -142,17 +167,17 @@ setUserRegistration(str);
 {!loginSection&&<form className="border p-3 rounded shadow py-5 bg">
             <h1>Registrati</h1>
     <label className="py-2">Email</label>
-    <input type="email" required className="form-control w-75 m-auto" onChange={(e)=>setEmailSignup(e.target.value)}/>
-    <p className="text-danger email"></p>
+    <input type="email" required className="form-control w-75 m-auto signup" onChange={(e)=>setEmailSignup(e.target.value)}/>
+    <p className="text-danger error"></p>
     <label className="py-2">Password</label>
-    <input type="password" required className="form-control w-75 m-auto" onChange={(e)=>setPasswordSignup(e.target.value)}/>
-    <p className="text-danger password"></p>
+    <input type="password" required className="form-control w-75 m-auto signup" onChange={(e)=>setPasswordSignup(e.target.value)}/>
+    <p className="text-danger error"></p>
     <label className="py-2">Nome</label>
-    <input type="email" required className="form-control w-75 m-auto" onChange={(e)=>setNome(e.target.value)}/>
-    <p className="text-danger email"></p>
+    <input type="email" required className="form-control w-75 m-auto signup" onChange={(e)=>setNome(e.target.value)}/>
+    <p className="text-danger error"></p>
     <label className="py-2">Cognome</label>
-    <input type="password" required className="form-control w-75 m-auto" onChange={(e)=>setCognome(e.target.value)}/>
-    <p className="text-danger password"></p>
+    <input type="password" required className="form-control w-75 m-auto signup" onChange={(e)=>setCognome(e.target.value)}/>
+    <p className="text-danger error"></p>
     <button className="btn m-3" type="button" onClick={()=>signup()}> Signup</button>
     <p className="text-danger">{error}</p>
     <hr />
