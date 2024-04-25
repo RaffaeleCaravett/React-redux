@@ -88,15 +88,23 @@ const signupCognomeError = document.getElementsByClassName('error')[3] as HTMLIn
 
 if(signupNome.value==''||!signupNome.value){
     signupNomeError.textContent='Campo vuoto.'
+}else{
+    signupNomeError.textContent=''
 }
 if(signupCognome.value==''||!signupCognome.value){
     signupCognomeError.textContent='Campo vuoto.'
+}else{
+    signupCognomeError.textContent=''
 }
-if(signupEmail.value==''||!signupEmail.value){
+if(signupEmail.value==''||!signupEmail.value||!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(signupEmail.value)){
     signupEmailError.textContent='Campo vuoto. Inserisci un valore tipo gigi@finizio.com'
+}else{
+    signupEmailError.textContent=''
 }
 if(signupPassword.value==''||!signupPassword.value){
     signupPasswordError.textContent='Campo vuoto.'
+}else{
+    signupPasswordError.textContent=''
 }
 
 const body = {
@@ -105,7 +113,10 @@ const body = {
     email:emailSignup,
     password:passwordSignup
 }
-if(signupEmail.value!=''){
+if(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(signupEmail.value)&&!/^$/.test(signupPassword.value)&&signupNome.value!=''&&signupCognome.value!=''
+&&signupNome.value!=undefined&&signupCognome.value!=undefined
+&&signupNome.value!=null&&signupCognome.value!=null
+){
 fetch('https://localhost:3031/auth',{
     method: "POST", 
     headers: {
