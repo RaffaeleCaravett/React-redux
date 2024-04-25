@@ -64,7 +64,6 @@ fetch('http://localhost:3031/auth/login',{
     }
 })
 }else if(emailInput.value.trim()!==''&&!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(emailInput.value)){
-    console.log('iuhih')
     errorEmailP.textContent='Prova ad inserire una email tipo : gigi@finizio.com'
 }
 }
@@ -111,7 +110,7 @@ fetch('http://localhost:3031/auth/login',{
     <p className="text-danger">{error}</p>
     <hr />
     <div>oppure</div>
-    <button className="btn btn-light m-3" type="button" onClick={()=>setLoginSection(false)}> Signup</button>
+    <button className="btn btn-light m-3" type="button" onClick={()=>setLoginSection(true)}> Login</button>
 </form>}
     </div>
    
