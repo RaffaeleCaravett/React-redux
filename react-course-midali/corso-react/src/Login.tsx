@@ -117,7 +117,8 @@ if(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(signupEmail.value)&&!/^$/.tes
 &&signupNome.value!=undefined&&signupCognome.value!=undefined
 &&signupNome.value!=null&&signupCognome.value!=null
 ){
-fetch('https://localhost:3031/auth',{
+    console.log(body)
+fetch('http://localhost:3031/auth',{
     method: "POST", 
     headers: {
       "Content-Type": "application/json"
@@ -184,10 +185,10 @@ setUserRegistration(str);
     <input type="password" required className="form-control w-75 m-auto signup" onChange={(e)=>setPasswordSignup(e.target.value)}/>
     <p className="text-danger error"></p>
     <label className="py-2">Nome</label>
-    <input type="email" required className="form-control w-75 m-auto signup" onChange={(e)=>setNome(e.target.value)}/>
+    <input type="text" required className="form-control w-75 m-auto signup" onChange={(e)=>setNome(e.target.value)}/>
     <p className="text-danger error"></p>
     <label className="py-2">Cognome</label>
-    <input type="password" required className="form-control w-75 m-auto signup" onChange={(e)=>setCognome(e.target.value)}/>
+    <input type="text" required className="form-control w-75 m-auto signup" onChange={(e)=>setCognome(e.target.value)}/>
     <p className="text-danger error"></p>
     <button className="btn m-3" type="button" onClick={()=>signup()}> Signup</button>
     <p className="text-danger">{error}</p>
