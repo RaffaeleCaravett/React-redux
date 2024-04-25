@@ -101,11 +101,19 @@ if(data&&data.status&&data.status!=200){
 }
 setUserRegistration('User registrato con successo.')
 setLoginSection(true)
+}
+).catch(err=>{
+    if(err.name === 'AbortError') {
+        console.log('Aborted')
+    }else{
+    setError(err);
+    }
 })
 }
 
 const updateSection = (bool:boolean,str:string) => {
 setLoginSection(bool)
+setError('')
 setUserRegistration(str);
 }
     return (
