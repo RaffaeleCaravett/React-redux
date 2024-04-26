@@ -158,7 +158,7 @@ setUserRegistration(str);
           <div className="container py-5 text-center">
   <div className="row py-5">
      <div className="col-md-6 py-5">
-<h1 className="py-5">Your absolute wonderful website</h1>
+<h1 className="py-5">Your absolute wonderful website!</h1>
     </div>
     <div className="col-md-6 py-5">
         {loginSection&&<form className="border p-3 rounded shadow py-5 bg">
