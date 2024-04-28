@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { tokenInterface } from "./interfaces/interfaces";
+import { useDispatch} from "react-redux";
+//import { tokenInterface } from "./interfaces/interfaces";
+import { setAccessToken,setIsLoggedIn } from "./redux/accessTokenSlice";
 const Login = () =>{
 
 
@@ -15,10 +16,9 @@ const [cognome,setCognome] = useState('')
 const [error,setError]= useState('')
 const [loginSection,setLoginSection] = useState(true)
 const [userRegistration,setUserRegistration] = useState('')
-const accessToken = useSelector((state:tokenInterface) => state.accessToken.accessToken)
+//const accessToken = useSelector((state:tokenInterface) => state.accessToken.accessToken)
+const dispatch = useDispatch();
 
-
-console.log('accessToken : ' + accessToken)
 const login = () =>{
 const emailInput = document.getElementsByClassName('login')[0] as HTMLInputElement; 
 const passwordInput = document.getElementsByClassName('login')[1] as HTMLInputElement; 
@@ -65,7 +65,9 @@ fetch('http://localhost:3031/auth/login',{
      emailInput.value=''
      passwordInput.value=''
 
-     console.log(data)
+     dispatch(setAccessToken(data));
+     dispatch(setIsLoggedIn(true))
+    
     }
 })
 .catch((err)=>{

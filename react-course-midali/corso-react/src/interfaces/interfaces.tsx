@@ -1,5 +1,6 @@
 export interface tokenInterface {
     accessToken: {
-      accessToken:string
+      accessToken:string,
+      isLoggedIn:boolean
     };
   }
