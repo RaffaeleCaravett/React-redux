@@ -196,11 +196,26 @@ useEffect(() => {
             console.log('An error occurred during the request.');
             dispatch(setAccessToken({ accessToken: '' }));
             dispatch(setIsLoggedIn(false));
+            try {
+              const response = await fetch(`http://localhost:3031/auth/verifyRefreshToken/${refreshToken}`);
+              const data = await response.json();
+              if (response.ok && data) {
+                localStorage.setItem('accessToken', data.accessToken);
+                localStorage.setItem('refreshToken', data.refreshToken);
+                dispatch(setAccessToken(data.accessToken));
+                verifyTokens();
+              } else {
+                console.log('An error occurred during the request.');
+              }
+            } catch (error) {
+              console.error('Error verifying refresh token:', error);
+            }
           }
         } catch (error) {
           console.error('Error verifying access token:', error);
           dispatch(setAccessToken({ accessToken: '' }));
           dispatch(setIsLoggedIn(false));
+          
         }
       } else if (refreshToken) {
         try {

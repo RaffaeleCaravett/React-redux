@@ -37,11 +37,26 @@ useEffect(() => {
             console.log('An error occurred during the request.');
             dispatch(setAccessToken({ accessToken: '' }));
             dispatch(setIsLoggedIn(false));
+            try {
+              const response = await fetch(`http://localhost:3031/auth/verifyRefreshToken/${refreshToken}`);
+              const data = await response.json();
+              if (response.ok && data) {
+                localStorage.setItem('accessToken', data.accessToken);
+                localStorage.setItem('refreshToken', data.refreshToken);
+                dispatch(setAccessToken(data.accessToken));
+                verifyTokens();
+              } else {
+                console.log('An error occurred during the request.');
+              }
+            } catch (error) {
+              console.error('Error verifying refresh token:', error);
+            }
           }
         } catch (error) {
           console.error('Error verifying access token:', error);
           dispatch(setAccessToken({ accessToken: '' }));
           dispatch(setIsLoggedIn(false));
+
         }
       } else if (refreshToken) {
         try {
@@ -74,6 +89,18 @@ Auto-login
 */
 
 
-    return('')
+    return(
+      <div className="container text-center">
+        <div className="row">
+          <div className="col-md-12 p-2">
+            <h1>Blogs</h1>
+          </div>
+          <div className="col-md-12 p-2">
+            Recupera e leggi tutti i blog che vuoi!
+          </div>
+          
+        </div>
+      </div>
+    )
     }
     export default Blog;
