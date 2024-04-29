@@ -69,8 +69,8 @@ fetch('http://localhost:3031/auth/login',{
 
      dispatch(setAccessToken(data));
      dispatch(setIsLoggedIn(true))
-    localStorage.setItem('accessToken', JSON.stringify(data.accessToken))
-    localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken))
+    localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('refreshToken', data.refreshToken)
     navigate("/blogs")
     }
 })
@@ -188,8 +188,8 @@ const verifyToken = () =>{
          dispatch(setAccessToken(localStorage.getItem('accessToken')));
          dispatch(setUser(JSON.parse(data)))
          dispatch(setIsLoggedIn(true))
-        localStorage.setItem('accessToken', JSON.stringify(data.accessToken))
-        localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken))
+        localStorage.setItem('accessToken', data.accessToken)
+        localStorage.setItem('refreshToken', data.refreshToken)
        navigate('/blogs')
         }
       })

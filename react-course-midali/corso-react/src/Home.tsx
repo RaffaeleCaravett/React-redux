@@ -8,7 +8,9 @@ const Home =()=>{
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const verifyToken = () =>{
-        fetch(`http://localhost:3031/auth/verifyAccessToken/${localStorage.getItem('accessToken')}`,{
+       const accessToken = localStorage.getItem('accessToken'); 
+       console.log(accessToken)
+        fetch(`http://localhost:3031/auth/verifyAccessToken/${accessToken}`,{
             method: "GET", 
             headers: {
               "Content-Length": "0"
@@ -42,7 +44,9 @@ const Home =()=>{
 const verifyRefreshToken = () =>{
     const getTokensByRefreshToken = async () => {
         try{
-    const response = await fetch(`http://localhost:3031/auth/verifyRefreshToken/${localStorage.getItem('refreshToken')}`);
+            const refreshToken = localStorage.getItem('refreshToken'); 
+
+    const response = await fetch(`http://localhost:3031/auth/verifyRefreshToken/${refreshToken}`);
     const data = await response.json()
     
     if(data){
