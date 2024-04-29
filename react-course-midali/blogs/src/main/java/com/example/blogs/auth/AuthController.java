@@ -76,6 +76,6 @@ public User save(@RequestBody @Validated UserRegistrationDTO userRegistrationDTO
         categorias.add(Categoria.c);
         categorias.add(Categoria.d);
 
-    return categorias;
+    return categorias
     }
 }
