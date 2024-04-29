@@ -7,7 +7,10 @@ import Fot from './foot.tsx'
 import Home from './Home.tsx';
 import Blog from './Blog.tsx';
 import Login from './Login.tsx';
+
 function App() {
+
+
 
   return (
     <>

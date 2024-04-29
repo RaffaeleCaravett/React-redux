@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 //import { tokenInterface } from "./interfaces/interfaces";
 import { setAccessToken,setIsLoggedIn } from "./redux/accessTokenSlice";
+import { useNavigate } from "react-router-dom";
 const Login = () =>{
-
+    const navigate = useNavigate();
 
 
 const [email,setEmail] = useState('')
@@ -67,7 +68,9 @@ fetch('http://localhost:3031/auth/login',{
 
      dispatch(setAccessToken(data));
      dispatch(setIsLoggedIn(true))
-    
+    localStorage.setItem('accessToken', JSON.stringify(data.accessToken))
+    localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken))
+    navigate("/blogs")
     }
 })
 .catch((err)=>{
