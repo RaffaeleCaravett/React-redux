@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { setAccessToken, setIsLoggedIn } from "./redux/accessTokenSlice";
 import { setUser } from "./redux/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userInterface } from "./interfaces/interfaces";
 
 const Blog =()=>{
 /*
 Auto-login
 */
 
-
+const user = useSelector((state:userInterface)=>state.user)
+console.log(user)
 const dispatch = useDispatch()
 const navigate= useNavigate()
 useEffect(() => {
@@ -96,7 +98,7 @@ Auto-login
             <h1>Blogs</h1>
           </div>
           <div className="col-md-12 p-2">
-            Recupera e leggi tutti i blog che vuoi!
+            Ciao {user && <span>{ user.nome}</span>} Recupera e leggi tutti i blog che vuoi!
           </div>
           
         </div>

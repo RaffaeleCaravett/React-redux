@@ -4,3 +4,15 @@ export interface tokenInterface {
       isLoggedIn:boolean
     };
   }
+
+  export interface userInterface {
+    user: {
+        id:number,
+        nome:string,
+        cognome:string,
+        email:string,
+        password:string,
+        role:string,
+        blogs:unknown[]
+    };
+  }
