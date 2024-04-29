@@ -71,7 +71,7 @@ fetch('http://localhost:3031/auth/login',{
      dispatch(setIsLoggedIn(true))
     localStorage.setItem('accessToken', data.accessToken)
     localStorage.setItem('refreshToken', data.refreshToken)
-    navigate('/Blogs');
+    navigate('/Blog');
   }
 })
 .catch((err)=>{
@@ -171,8 +171,10 @@ setUserRegistration(str);
 Auto-login
 */
 
-  useEffect(() => {
-    const verifyTokens = async () => {
+useEffect(() => {
+  const handlePageRefresh = () => {
+    if (window.performance.navigation.type === 1) {
+  const verifyTokens = async () => {
       const accessToken = localStorage.getItem('accessToken');
       const refreshToken = localStorage.getItem('refreshToken');
       
@@ -189,7 +191,7 @@ Auto-login
             dispatch(setAccessToken(accessToken));
             dispatch(setUser(data));
             dispatch(setIsLoggedIn(true));
-            navigate('/Blogs');
+            navigate('/Blog');
           } else {
             console.log('An error occurred during the request.');
             dispatch(setAccessToken({ accessToken: '' }));
@@ -221,6 +223,8 @@ Auto-login
     };
 
     verifyTokens();
+  }}
+    window.addEventListener('load', handlePageRefresh);
   }, [dispatch, navigate]);
 
 

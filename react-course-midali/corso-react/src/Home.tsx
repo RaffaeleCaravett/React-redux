@@ -15,7 +15,9 @@ const dispatch = useDispatch()
 const navigate= useNavigate()
 
 useEffect(() => {
-    const verifyTokens = async () => {
+  const handlePageRefresh = () => {
+    if (window.performance.navigation.type === 1) {
+  const verifyTokens = async () => {
       const accessToken = localStorage.getItem('accessToken');
       const refreshToken = localStorage.getItem('refreshToken');
       
@@ -32,7 +34,6 @@ useEffect(() => {
             dispatch(setAccessToken(accessToken));
             dispatch(setUser(data));
             dispatch(setIsLoggedIn(true));
-            navigate('/Blogs');
           } else {
             console.log('An error occurred during the request.');
             dispatch(setAccessToken({ accessToken: '' }));
@@ -64,8 +65,9 @@ useEffect(() => {
     };
 
     verifyTokens();
+  }}
+    window.addEventListener('load', handlePageRefresh);
   }, [dispatch, navigate]);
-
 
 /*
 Auto-login 
