@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setAccessToken, setIsLoggedIn } from "./redux/accessTokenSlice";
 import { setUser } from "./redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { tokenInterface, userInterface } from "./interfaces/interfaces";
+import SingleBlogComponent from "./singleBlogComponent";
 
 const Blog =()=>{
 /*
@@ -13,6 +14,8 @@ Auto-login
 const user = useSelector((state:userInterface)=>state.user)
 const dispatch = useDispatch()
 const navigate= useNavigate()
+const [blogs,setBlogs] = useState({})
+
 useEffect(() => {
   const handlePageRefresh = () => {
     if (window.performance.navigation.type === 1) {
@@ -105,7 +108,7 @@ useEffect(()=>{
       if(data&&data.status&&data.status!=200){
         console.log(data.message)
       }else{
-        console.log(data)
+        setBlogs(data)
       }
      })
      .catch(error=>{
@@ -135,7 +138,9 @@ End getting blogs
           <div className="col-md-12 p-2">
             Ciao {user && <span>{ user.nome}</span>} Recupera e leggi tutti i blog che vuoi!
           </div>
-          
+          <div className="col-md-12 p-2">
+            {blogs && <SingleBlogComponent blogs={blogs}></SingleBlogComponent>}
+          </div>
         </div>
       </div>
     )
