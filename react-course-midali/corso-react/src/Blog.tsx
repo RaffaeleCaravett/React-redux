@@ -3,7 +3,7 @@ import { setAccessToken, setIsLoggedIn } from "./redux/accessTokenSlice";
 import { setUser } from "./redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userInterface } from "./interfaces/interfaces";
+import { tokenInterface, userInterface } from "./interfaces/interfaces";
 
 const Blog =()=>{
 /*
@@ -89,7 +89,40 @@ useEffect(() => {
 /*
 Auto-login 
 */
+const token = useSelector((state:tokenInterface)=>state.accessToken.accessToken)
 
+useEffect(()=>{
+  const getBlogs = () =>{
+
+    fetch('http://localhost:3031/blog',{
+      method: "GET", 
+      headers: {Authorization: `Bearer  ${token||''}`}
+    }).then((data)=>{
+      return data.json()
+     })
+     .then(data=>{
+      if(data&&data.status&&data.status!=200){
+        console.log(data.message)
+      }else{
+        console.log(data)
+      }
+     })
+     .catch(error=>{
+      console.log(error)
+     })
+
+   
+}
+})
+
+
+/*
+Getting blogs
+*/
+
+/*
+End getting blogs
+*/
 
     return(
       <div className="container text-center">
