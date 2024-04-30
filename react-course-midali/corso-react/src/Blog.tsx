@@ -14,7 +14,7 @@ Auto-login
 const user = useSelector((state:userInterface)=>state.user)
 const dispatch = useDispatch()
 const navigate= useNavigate()
-const [blogs,setBlogs] = useState({})
+const [blogs,setBlogs] = useState([])
 
 useEffect(() => {
   const handlePageRefresh = () => {
@@ -92,7 +92,6 @@ useEffect(() => {
 Auto-login 
 */
 const token = useSelector((state:tokenInterface)=>state.accessToken.accessToken)
-console.log(token)
 useEffect(()=>{
   const getBlogs = () =>{
 
@@ -105,7 +104,7 @@ useEffect(()=>{
       return data.json()
      })
      .then(data=>{
-      if(data&&data.status&&data.status!=200){
+      if(data&&data.status&&data.status!=200||data&&data.message){
         console.log(data.message)
       }else{
         setBlogs(data)
@@ -136,7 +135,7 @@ End getting blogs
             <h1>Blogs</h1>
           </div>
           <div className="col-md-12 p-2">
-            Ciao {user && <span>{ user.nome}</span>} Recupera e leggi tutti i blog che vuoi!
+            Ciao {user && <span>{ user.nome}</span>} recupera e leggi tutti i blog che vuoi!
           </div>
           <div className="col-md-12 p-2">
             {blogs && <SingleBlogComponent blogs={blogs}></SingleBlogComponent>}
