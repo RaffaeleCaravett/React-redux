@@ -4,6 +4,7 @@ import { setUser } from "./redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { tokenInterface, userInterface } from "./interfaces/interfaces";
+import { access } from "fs/promises";
 
 const Blog =()=>{
 /*
@@ -11,7 +12,6 @@ Auto-login
 */
 
 const user = useSelector((state:userInterface)=>state.user)
-console.log(user)
 const dispatch = useDispatch()
 const navigate= useNavigate()
 useEffect(() => {
@@ -31,7 +31,7 @@ useEffect(() => {
           });
           const data = await response.json();
           if (response.ok && data && !data.status) {
-            dispatch(setAccessToken(accessToken));
+            dispatch(setAccessToken({accessToken:accessToken}));
             dispatch(setUser(data));
             dispatch(setIsLoggedIn(true));
             navigate('/Blog');
@@ -45,7 +45,7 @@ useEffect(() => {
               if (response.ok && data) {
                 localStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('refreshToken', data.refreshToken);
-                dispatch(setAccessToken(data.accessToken));
+                dispatch(setAccessToken(data));
                 verifyTokens();
               } else {
                 console.log('An error occurred during the request.');
@@ -90,13 +90,15 @@ useEffect(() => {
 Auto-login 
 */
 const token = useSelector((state:tokenInterface)=>state.accessToken.accessToken)
-
+console.log(token)
 useEffect(()=>{
   const getBlogs = () =>{
 
     fetch('http://localhost:3031/blog',{
       method: "GET", 
-      headers: {Authorization: `Bearer  ${token||''}`}
+      headers: {
+        "Authorization": `Bearer ${token||''}`
+      }
     }).then((data)=>{
       return data.json()
      })
@@ -111,9 +113,10 @@ useEffect(()=>{
       console.log(error)
      })
 
-   
+
 }
-})
+   getBlogs()
+},[token])
 
 
 /*
