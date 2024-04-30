@@ -31,7 +31,7 @@ useEffect(() => {
           });
           const data = await response.json();
           if (response.ok && data && !data.status) {
-            dispatch(setAccessToken(accessToken));
+            dispatch(setAccessToken({accessToken:accessToken}));
             dispatch(setUser(data));
             dispatch(setIsLoggedIn(true));
           } else {
@@ -44,7 +44,7 @@ useEffect(() => {
               if (response.ok && data) {
                 localStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('refreshToken', data.refreshToken);
-                dispatch(setAccessToken(data.accessToken));
+                dispatch(setAccessToken(data));
                 verifyTokens();
               } else {
                 console.log('An error occurred during the request.');
@@ -65,7 +65,7 @@ useEffect(() => {
           if (response.ok && data) {
             localStorage.setItem('accessToken', data.accessToken);
             localStorage.setItem('refreshToken', data.refreshToken);
-            dispatch(setAccessToken(data.accessToken));
+            dispatch(setAccessToken(data));
             verifyTokens();
           } else {
             console.log('An error occurred during the request.');
