@@ -9,7 +9,8 @@ const blogs = props.blogs;
 <div className="row">
   {blogs.content.map((b:any)=>(
     <div className="col-md-3 p-2" key={b.id}>
-        <div className="p-1">
+        <div className="border shadow p-2 on-hover">
+          <div className="p-1">
             <h2>{b.titolo}</h2>
             <p className="fs-6">{b.categoria + " " + b.tempoLettura}</p>
         </div>
@@ -18,6 +19,7 @@ const blogs = props.blogs;
         </div>
         <div className="p-1">
             {b.autore}
+        </div>    
         </div>
     </div>
   ))  
