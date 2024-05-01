@@ -28,3 +28,10 @@ line-height: 1.2;
     font-weight: bold;
   }
 }
+.on-hover{
+  transition: 1s;
+  &:hover{
+    scale: 1.05;
+    transition:1s;
+  }
+}
