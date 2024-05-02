@@ -34,13 +34,18 @@ const [currentBlog,setCurrentBlog] = useState<BlogStructure | null>(null);
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title">{currentBlog?.titolo}</h5>
+        <h5 className="modal-title">{currentBlog?.id+ " " +currentBlog?.titolo + " - " + currentBlog?.autore}</h5>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+      
+      </div>
+      <div>
       </div>
       <div className="modal-body">
-        <p>Modal body text goes here.</p>
+        <p className="fs-4">{currentBlog?.testo}</p>
+        <p className="text-end">{"Tempo lettura " + currentBlog?.tempoLettura}</p>
+        <p className="text-end">{"Categoria" + " " + currentBlog?.categoria}</p> 
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
