@@ -12,7 +12,7 @@ const [currentBlog,setCurrentBlog] = useState<BlogStructure | null>(null);
 <div className="row">
   {blogs.content.map((b:any)=>(
     <div className="col-md-3 p-2" key={b.id}>
-        <div className="border shadow p-2 on-hover"  data-toggle="modal" data-target="#exampleModal" onClick={setCurrentBlog(b)}>
+        <div className="border shadow p-2 on-hover"  data-toggle="modal" data-target="#exampleModal" onClick={()=>setCurrentBlog(b)}>
           <div className="p-1">
             <h2>{b.titolo}</h2>
             <p className="fs-6">{b.categoria + " " + b.tempoLettura}</p>
