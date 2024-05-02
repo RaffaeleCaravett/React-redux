@@ -33,5 +33,6 @@ line-height: 1.2;
   &:hover{
     scale: 1.05;
     transition:1s;
+    cursor: pointer;
   }
 }
