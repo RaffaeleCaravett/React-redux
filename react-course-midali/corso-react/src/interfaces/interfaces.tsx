@@ -42,3 +42,13 @@ sort:
 totalElements: number
 totalPages: number
   }
+
+  export interface BlogStructure{
+    id:number,
+    titolo:string,
+    autore:string,
+    tempoLettura:number,
+    testo:string,
+    categoria:string,
+    user_id:number
+  }
